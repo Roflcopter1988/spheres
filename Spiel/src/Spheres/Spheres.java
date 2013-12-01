@@ -41,9 +41,8 @@ public class Spheres extends WindowClosingAdapter {
 	}
 
 	public void startGame(int mode, User user) {
-		gView = new GameView();
-		gModel = new GameModel(gView, mode, user);
-		
+		gModel = new GameModel(mode, user);
+		gView = new GameView(gModel);
 		navigateTo(gView);
 	}
 }

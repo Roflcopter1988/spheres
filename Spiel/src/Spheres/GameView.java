@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.BorderFactory;
@@ -13,14 +15,17 @@ import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 public class GameView extends JPanel {
-
+	
+	private GameModel gModel;
 	private JPanel centerPa, southPa, gamePa, eastPa, westPa;
 	private JLabel pointsLa, nameLa, timeDrawsLeftLa, northLa;
 	private JButton cbB, ssB, cnB, menuB, shopB, beendenB;
-	private TitledBorder cbBrd, ssBrd, cnBrd;
+	private TitledBorder cbBrd, ssBrd, cnBrd, pointsBrd, nameBrd,
+			timeDrawsLeftBrd;
 
-	public GameView() {
+	public GameView(GameModel gModelArgs) {
 		super();
+		gModel=gModelArgs;
 
 		cbBrd = BorderFactory.createTitledBorder("");
 		cbBrd.setTitleJustification(TitledBorder.LEFT);
@@ -28,6 +33,9 @@ public class GameView extends JPanel {
 		ssBrd.setTitleJustification(TitledBorder.CENTER);
 		cnBrd = BorderFactory.createTitledBorder("");
 		cnBrd.setTitleJustification(TitledBorder.RIGHT);
+		pointsBrd = BorderFactory.createTitledBorder("");
+		nameBrd = BorderFactory.createTitledBorder("");
+		timeDrawsLeftBrd = BorderFactory.createTitledBorder("");
 
 		setLayout(new BorderLayout(5, 5));
 		setBackground(Color.green.darker());
@@ -79,14 +87,14 @@ public class GameView extends JPanel {
 		westPa.setSize(new Dimension(100, 400));
 		westPa.setLayout(new GridLayout(7, 1, 10, 10));
 		westPa.setBackground(Color.gray.darker());
-		
+
 		westPa.add(new JLabel());
 		// ------------------------Name-Label
-		
+
 		westPa.add(new JLabel());
 		// ------------------------Punktestand-Label
 		pointsLa = new JLabel();
-		pointsLa.
+		pointsLa.setBorder(pointsBrd);
 		westPa.add(new JLabel());
 		// ------------------------Zeit / Züge-Label
 		westPa.add(new JLabel());
@@ -106,12 +114,16 @@ public class GameView extends JPanel {
 		beendenB.setAlignmentX(LEFT_ALIGNMENT);
 		beendenB.setMnemonic(KeyEvent.VK_E);
 		footer.add(beendenB);
-		/*
-		 * beendenB.addActionListener(new ActionListener() {
-		 * 
-		 * @Override public void actionPerformed(ActionEvent e) {
-		 * saveUser(user); System.exit(0); } });
-		 */
+
+/*		beendenB.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//saveUser(user);
+				System.exit(0);
+			}
+		});
+*/
 
 		shopB = new JButton("Shop");
 		shopB.setBorder(BorderFactory.createEtchedBorder(Color.LIGHT_GRAY,
@@ -120,13 +132,13 @@ public class GameView extends JPanel {
 		shopB.setAlignmentX(CENTER_ALIGNMENT);
 		shopB.setMnemonic(KeyEvent.VK_S);
 		footer.add(shopB);
-		/*
-		 * abmeldenB.addActionListener(new ActionListener() {
-		 * 
-		 * @Override public void actionPerformed(ActionEvent e) {
-		 * spheres.navigateTo(new ViewLogin(spheres),
-		 * SlidingPanel.Direction.RIGHT); saveUser(user); } });
-		 */
+/*
+ * abmeldenB.addActionListener(new ActionListener() {
+ * 
+ * @Override public void actionPerformed(ActionEvent e) {
+ * spheres.navigateTo(new ViewLogin(spheres),
+ * SlidingPanel.Direction.RIGHT); saveUser(user); } });
+ */
 
 		menuB = new JButton("Menu");
 		menuB.setBorder(BorderFactory.createEtchedBorder(Color.LIGHT_GRAY,
@@ -135,13 +147,13 @@ public class GameView extends JPanel {
 		menuB.setAlignmentX(LEFT_ALIGNMENT);
 		menuB.setMnemonic(KeyEvent.VK_M);
 		footer.add(menuB);
-		/*
-		 * backB.addActionListener(new ActionListener() {
-		 * 
-		 * @Override public void actionPerformed(ActionEvent e) {
-		 * spheres.navigateTo(new Menu(spheres, user),
-		 * SlidingPanel.Direction.RIGHT); //saveUser(user); } });
-		 */
+/*
+ * backB.addActionListener(new ActionListener() {
+ * 
+ * @Override public void actionPerformed(ActionEvent e) {
+ * spheres.navigateTo(new Menu(spheres, user),
+ * SlidingPanel.Direction.RIGHT); //saveUser(user); } });
+ */
 		return footer;
 	}
 
@@ -167,6 +179,30 @@ public class GameView extends JPanel {
 
 	public void setCNB(String txt) {
 		cnBrd.setTitle(txt);
+	}
+
+	public void setNameBrd(String txt) {
+		nameBrd.setTitle(txt);
+	}
+
+	public void setPointsBrd(String txt) {
+		pointsBrd.setTitle(txt);
+	}
+
+	public void setTimeDrawsLeftBrd(String txt) {
+		timeDrawsLeftBrd.setTitle(txt);
+	}
+	
+	public void addExitListener(ActionListener exit) {
+		beendenB.addActionListener(exit);
+	}
+	
+	public void addShopListener(ActionListener shop) {
+		shopB.addActionListener(shop);
+	}
+	
+	public void addMenuListener(ActionListener menu) {
+		menuB.addActionListener(menu);
 	}
 
 }
