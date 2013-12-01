@@ -10,16 +10,18 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.TitledBorder;
 
 public class GameView extends JPanel {
 
 	private JPanel centerPa, southPa, gamePa, eastPa, westPa;
-	private JLabel pointsLa, nameLa, timeDrawsLeftLa;
+	private JLabel pointsLa, nameLa, timeDrawsLeftLa, northLa;
 	private JButton cbB, ssB, cnB, menuB, shopB, beendenB;
 
 	public GameView() {
 		super();
-		setLayout(new BorderLayout());
+		setLayout(new BorderLayout(5,5));
+		setBackground(Color.green.darker());
 		southPa = createFooter();
 		add(southPa, BorderLayout.SOUTH);
 		// ---------------------------------center-Panel_Spielfeld
@@ -31,13 +33,17 @@ public class GameView extends JPanel {
 		// ----------------------------------east-Panel_für_die_Joker
 		eastPa = new JPanel();
 		eastPa.setSize(new Dimension(100, 400));
-		eastPa.setLayout(new GridLayout(7, 1));
+		eastPa.setLayout(new GridLayout(7, 1, 10, 10));
 
 		eastPa.add(new JLabel());
 		// ................Bronson-Button
 		cbB = new JButton("");
 		cbB.setSize(new Dimension(100, 50));
-		cbB.setBorder(BorderFactory.createTitledBorder("Bronson"));
+		TitledBorder brd = null;
+		brd =BorderFactory.createTitledBorder("Bronson");
+		brd.setTitleJustification(TitledBorder.TRAILING);
+		cbB.setBorder(brd);
+		cbB.setBackground(Color.red.darker());
 		eastPa.add(cbB);
 
 		eastPa.add(new JLabel());
@@ -45,17 +51,29 @@ public class GameView extends JPanel {
 		ssB = new JButton("");
 		ssB.setSize(new Dimension(100, 50));
 		ssB.setBorder(BorderFactory.createTitledBorder("Seagal"));
+		ssB.setBackground(Color.cyan.darker());
 		eastPa.add(ssB);
 		eastPa.add(new JLabel());
 		// .................Norris-button
 		cnB = new JButton("");
 		cnB.setSize(new Dimension(100, 50));
 		cnB.setBorder(BorderFactory.createTitledBorder("Norris"));
+		cnB.setBackground(Color.yellow.darker());
 		eastPa.add(cnB);
 		eastPa.add(new JLabel());
 
 		add(eastPa, BorderLayout.EAST);
-
+		
+		// -------------------------------------north-Panel
+		northLa= new JLabel("S P H E R E S");
+		northLa.setHorizontalAlignment(JLabel.CENTER);
+		add(northLa, BorderLayout.NORTH);
+		
+		// -------------------------------------west-Panel
+		westPa= new JPanel();
+		westPa.setSize(new Dimension(100,400));
+		add(westPa, BorderLayout.WEST);
+		
 	}
 
 	// ==================_footer_anlegen_=========
@@ -122,15 +140,20 @@ public class GameView extends JPanel {
 	}
 
 	public void setCBB(String txt) {
-		cbB.setText("     "+txt+"     ");
+		cbB.setText("       " + txt + "       ");
 	}
 
 	public void setSSB(String txt) {
-		ssB.setText("     "+txt+"     ");
+		ssB.setText("       " + txt + "       ");
 	}
 
 	public void setCNB(String txt) {
-		cnB.setText("     "+txt+"     ");
+		cnB.setText("       " + txt + "       ");
+	}
+
+	// @SuppressWarnings("deprecation")
+	public void selectCBB() {
+		cbB.setSelected(true);
 	}
 
 }
