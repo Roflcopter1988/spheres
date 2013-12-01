@@ -15,14 +15,14 @@ public class GameModel implements Serializable {
 		gameMode = modeArgs;
 		
 		// ----------------------------------Anzeige_Einstellen
-		/*
-		gView.setUsername(user.getName());
-		gView.setPoints((Integer)user.getPoints());
-		gView.setTimeDraftsLeftLa((Integer)30);
+		
+		//gView.setUsername(user.getName());
+		//gView.setPoints((Integer)user.getPoints());
+		//gView.setTimeDraftsLeftLa((Integer)30);
 		gView.setCBB(user.getCbAnzS());
 		gView.setSSB(user.getSsAnzS());
 		gView.setCNB(user.getCnAnzS());
-		*/
+		
 		//for (int i = 0; i < 36; i++) {
 			//balls[i] = new Ball(i,user.getColorChoice());
 		//}
