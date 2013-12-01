@@ -17,10 +17,19 @@ public class GameView extends JPanel {
 	private JPanel centerPa, southPa, gamePa, eastPa, westPa;
 	private JLabel pointsLa, nameLa, timeDrawsLeftLa, northLa;
 	private JButton cbB, ssB, cnB, menuB, shopB, beendenB;
+	private TitledBorder cbBrd, ssBrd, cnBrd;
 
 	public GameView() {
 		super();
-		setLayout(new BorderLayout(5,5));
+
+		cbBrd = BorderFactory.createTitledBorder("");
+		cbBrd.setTitleJustification(TitledBorder.LEFT);
+		ssBrd = BorderFactory.createTitledBorder("");
+		ssBrd.setTitleJustification(TitledBorder.CENTER);
+		cnBrd = BorderFactory.createTitledBorder("");
+		cnBrd.setTitleJustification(TitledBorder.RIGHT);
+
+		setLayout(new BorderLayout(5, 5));
 		setBackground(Color.green.darker());
 		southPa = createFooter();
 		add(southPa, BorderLayout.SOUTH);
@@ -34,46 +43,55 @@ public class GameView extends JPanel {
 		eastPa = new JPanel();
 		eastPa.setSize(new Dimension(100, 400));
 		eastPa.setLayout(new GridLayout(7, 1, 10, 10));
-
+		eastPa.setBackground(Color.gray.darker());
 		eastPa.add(new JLabel());
 		// ................Bronson-Button
-		cbB = new JButton("");
+		cbB = new JButton("Bronson");
 		cbB.setSize(new Dimension(100, 50));
-		TitledBorder brd = null;
-		brd =BorderFactory.createTitledBorder("Bronson");
-		brd.setTitleJustification(TitledBorder.TRAILING);
-		cbB.setBorder(brd);
-		cbB.setBackground(Color.red.darker());
+		cbB.setBorder(cbBrd);
+		cbB.setBackground(Color.red.brighter());
 		eastPa.add(cbB);
 
 		eastPa.add(new JLabel());
 		// .................Seagal-button
-		ssB = new JButton("");
+		ssB = new JButton("Seagal");
 		ssB.setSize(new Dimension(100, 50));
-		ssB.setBorder(BorderFactory.createTitledBorder("Seagal"));
-		ssB.setBackground(Color.cyan.darker());
+		ssB.setBorder(ssBrd);
+		ssB.setBackground(Color.cyan);
 		eastPa.add(ssB);
 		eastPa.add(new JLabel());
 		// .................Norris-button
-		cnB = new JButton("");
+		cnB = new JButton("Norris");
 		cnB.setSize(new Dimension(100, 50));
-		cnB.setBorder(BorderFactory.createTitledBorder("Norris"));
-		cnB.setBackground(Color.yellow.darker());
+		cnB.setBorder(cnBrd);
+		cnB.setBackground(Color.yellow);
 		eastPa.add(cnB);
 		eastPa.add(new JLabel());
-
 		add(eastPa, BorderLayout.EAST);
-		
+
 		// -------------------------------------north-Panel
-		northLa= new JLabel("S P H E R E S");
+		northLa = new JLabel("S P H E R E S");
 		northLa.setHorizontalAlignment(JLabel.CENTER);
 		add(northLa, BorderLayout.NORTH);
-		
+
 		// -------------------------------------west-Panel
-		westPa= new JPanel();
-		westPa.setSize(new Dimension(100,400));
-		add(westPa, BorderLayout.WEST);
+		westPa = new JPanel();
+		westPa.setSize(new Dimension(100, 400));
+		westPa.setLayout(new GridLayout(7, 1, 10, 10));
+		westPa.setBackground(Color.gray.darker());
 		
+		westPa.add(new JLabel());
+		// ------------------------Name-Label
+		
+		westPa.add(new JLabel());
+		// ------------------------Punktestand-Label
+		pointsLa = new JLabel();
+		pointsLa.
+		westPa.add(new JLabel());
+		// ------------------------Zeit / Züge-Label
+		westPa.add(new JLabel());
+		add(westPa, BorderLayout.WEST);
+
 	}
 
 	// ==================_footer_anlegen_=========
@@ -140,20 +158,15 @@ public class GameView extends JPanel {
 	}
 
 	public void setCBB(String txt) {
-		cbB.setText("       " + txt + "       ");
+		cbBrd.setTitle(txt);
 	}
 
 	public void setSSB(String txt) {
-		ssB.setText("       " + txt + "       ");
+		ssBrd.setTitle(txt);
 	}
 
 	public void setCNB(String txt) {
-		cnB.setText("       " + txt + "       ");
-	}
-
-	// @SuppressWarnings("deprecation")
-	public void selectCBB() {
-		cbB.setSelected(true);
+		cnBrd.setTitle(txt);
 	}
 
 }

@@ -40,9 +40,9 @@ public abstract class View extends JPanel {
 	}
 
 	private void generateContent() {
-		setBackground(Color.black);
+		
 		// ##################____geerbtes_Panel_mit_Ojekten_befüllen___#####
-
+		setBackground(Color.green.darker());
 		setLayout(new BorderLayout(10, 20));
 		// ===================================================> Ost und West
 		east = new JLabel(" ");
