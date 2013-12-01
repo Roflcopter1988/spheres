@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.KeyEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -12,74 +13,74 @@ import javax.swing.JPanel;
 
 public class GameView extends JPanel {
 
-	private JPanel centerPa, northPa, southPa, eastPa, westPa;
+	private JPanel centerPa, southPa, gamePa;
 	private JLabel pointsLa, nameLa, timeDrawsLeftLa;
-	private JButton cbB, ssB, cnB;
-	private Spheres spheres;
-	private String username;
+	private JButton cbB, ssB, cnB, menuB, shopB, beendenB;
+
 
 	public GameView() {
 		super();
-
 		setLayout(new BorderLayout());
-		northPa = new JPanel();
-		northPa.setLayout(new GridLayout(1,4));
-
-		// ---------------------------------Name_oben_links
-		nameLa = new JLabel();
-		nameLa.setMinimumSize(new Dimension(74, 49));
-		nameLa.setBorder(BorderFactory.createEtchedBorder(Color.LIGHT_GRAY,
+		southPa = createFooter();
+		add(southPa, BorderLayout.SOUTH);
+		
+		centerPa = new JPanel();
+		centerPa.setMaximumSize(new Dimension(400,400));
+		centerPa.setBorder(BorderFactory.createEtchedBorder(Color.LIGHT_GRAY,
 				Color.black));
-		northPa.add(nameLa);
+		add(centerPa, BorderLayout.CENTER);
 		
+	}
 
-		// ---------------------------------Punkte_oben_links
-
-		pointsLa = new JLabel();
-		pointsLa.setBorder(BorderFactory.createEtchedBorder(Color.LIGHT_GRAY,
+	// ==================_footer_anlegen_=========
+	public JPanel createFooter() {
+		JPanel footer = new JPanel();
+		footer.setLayout(new GridLayout(1, 4, 10, 10));
+		add(footer, BorderLayout.SOUTH);
+		beendenB = new JButton("EXIT");
+		beendenB.setBorder(BorderFactory.createEtchedBorder(Color.LIGHT_GRAY,
 				Color.black));
-		northPa.add(pointsLa);
+		beendenB.setSize(new Dimension(10, 20));
+		beendenB.setAlignmentX(LEFT_ALIGNMENT);
+		beendenB.setMnemonic(KeyEvent.VK_E);
+		footer.add(beendenB);
+		/*
+		 * beendenB.addActionListener(new ActionListener() {
+		 * 
+		 * @Override public void actionPerformed(ActionEvent e) {
+		 * saveUser(user); System.exit(0); } });
+		 */
 
-		// --------------------------------_Zeit_/_Punkte_übrig_oben_links
-		
-		westPa = new JPanel();
-		timeDrawsLeftLa = new JLabel();
-		timeDrawsLeftLa.setBorder(BorderFactory.createEtchedBorder(
-				Color.LIGHT_GRAY, Color.black));
-		
-		westPa.add(timeDraftsLeftLa);
-		
-		// --------------------------------_Spielfeld (JPanel)
-		center = new JPanel();
-		center.setMinimumSize(new Dimension(450, 450));
-		center.setBorder(BorderFactory.createEtchedBorder(Color.LIGHT_GRAY,
+		shopB = new JButton("Shop");
+		shopB.setBorder(BorderFactory.createEtchedBorder(Color.LIGHT_GRAY,
 				Color.black));
-		
+		shopB.setSize(new Dimension(10, 20));
+		shopB.setAlignmentX(CENTER_ALIGNMENT);
+		shopB.setMnemonic(KeyEvent.VK_S);
+		footer.add(shopB);
+		/*
+		 * abmeldenB.addActionListener(new ActionListener() {
+		 * 
+		 * @Override public void actionPerformed(ActionEvent e) {
+		 * spheres.navigateTo(new ViewLogin(spheres),
+		 * SlidingPanel.Direction.RIGHT); saveUser(user); } });
+		 */
 
-		// ---------------------------_Charles_Bronson_Joker_Buttn_unten_links
-
-		cbB.setMinimumSize(new Dimension(50, 50));
-		cbB.setBorder(BorderFactory.createEtchedBorder(Color.LIGHT_GRAY,
+		menuB = new JButton("Menu");
+		menuB.setBorder(BorderFactory.createEtchedBorder(Color.LIGHT_GRAY,
 				Color.black));
-		add(cbB, BorderLayout.EAST);
-
-		// ---------------------------_Chuck_Norris_Joker_Buttn_unten_links
-		cnB = new JButton();
-		cnB.setMinimumSize(new Dimension(50, 50));
-		cnB.setBorder(BorderFactory.createEtchedBorder(Color.LIGHT_GRAY,
-				Color.black));
-		
-
-		// ---------------------------_Steven_Seagal_Joker_Buttn_unten_links
-		ssB = new JButton();
-		ssB.setMinimumSize(new Dimension(50, 50));
-		ssB.setBorder(BorderFactory.createEtchedBorder(Color.LIGHT_GRAY,
-				Color.black));
-		
-		add(timeDrawsLeftLa, BorderLayout.EAST);
-		add(center, BorderLayout.CENTER);
-		add(ssB, BorderLayout.SOUTH);
-		add(northPa, BorderLayout.NORTH);
+		menuB.setSize(new Dimension(10, 20));
+		menuB.setAlignmentX(LEFT_ALIGNMENT);
+		menuB.setMnemonic(KeyEvent.VK_M);
+		footer.add(menuB);
+		/*
+		 * backB.addActionListener(new ActionListener() {
+		 * 
+		 * @Override public void actionPerformed(ActionEvent e) {
+		 * spheres.navigateTo(new Menu(spheres, user),
+		 * SlidingPanel.Direction.RIGHT); //saveUser(user); } });
+		 */
+		return footer;
 	}
 
 	public void setUsername(String name) {
@@ -98,11 +99,11 @@ public class GameView extends JPanel {
 		cbB.setText(txt);
 	}
 
-	public void setCBB(String txt) {
+	public void setSSB(String txt) {
 		cbB.setText(txt);
 	}
 
-	public void setCBB(String txt) {
+	public void setCNB(String txt) {
 		cbB.setText(txt);
 	}
 
